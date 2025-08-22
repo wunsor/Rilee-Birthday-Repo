@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday!</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to right, #d9a7c7, #fffcdc);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+    h1 {
+      color: #7852A9;
+      margin-bottom: 0.5em;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+    }
+    #compliment {
+      font-size: 1.3em;
+      color: #4e342e;
+      margin: 20px 0;
+      min-height: 60px;
+    }
+    button {
+      background: #ff7043;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #ff8da1;
+    }
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      animation: fall 3s linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+      }
+    }
+    #secret {
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #d32f2f;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Happy Birthday, Rilee! 🎉</h1>
+  <div class="card">
+    <p id="compliment">Happy Birthday Rilee! <br> I’m so glad you’re in my life, your authenticity and personality birghtens each day that I spend with you! I hope 20 brings you the kind of moments that make you smile without even realizing it. Continue to let your beautiful personality to shine! <br> - winsah <br> Click the button for a surprise :)</p>
+    <button id="compliment-btn" onclick="newCompliment()">✨ Surprise me!</button>
+    <p id="secret">You unlocked the secret message hehe let winsor know so he can give it to you :p</p>
+  </div>
+
+  <script>
+    const compliments = [
+      "Lit crazy movies!!! ",
+      "You really brighten up my day 🌞",
+      "WEEEEEEEEEEEEEEEE",
+      "You're old lol",
+      "DRINK WATER",
+      "hi pretty girl :)",
+      "aboot that...",
+      "deez nuts",
+      "Show me this message to redeem 1 free prize!",
+      "nyt record: rilee 100000 : winsor 2",
+      "hi cutey <3",
+      "i'm a dinosaur RAR",
+      "GNARLY",
+      "huang ai li is LCM",
+      "har har har har har",
+      "widally its wilee's burfday, widally",
+      "i really like your laugh :)",
+      "meep morp meep",
+      "doo do doo dooo doo",
+      "SUNSHINE EYES HEHEHEHEHE",
+      "MEOW",
+      "WOOF WOOF WOOF WOOF WOOF",
+      "number 1 stair climber",
+      "I MEAN IT WHEN I SAY YOU LOOK GOOD OKAY",
+      "SMIKI SMIKI SMIKI SMKI",
+      "ribbit ribbit",
+      "CHUCK E CHEESE",
+      "According to all known laws of aviation, there is no way a bee should be able to fly. Its wings are too small to get its fat little body off the ground. The bee, of course, flies anyway because bees don't care what humans think is impossible. Yellow, black. Yellow, black. Yellow, black. Yellow, black. Ooh, black and yellow! Let's shake it up a little...",
+      "<3",
+      "errrrrrrrrrrrrrrrrrrrrrrrrr",
+      "You genuinely have a beautiful personality!!",
+      "Thanks for being there for me :)",
+      "BEAN and PAN and TURNIP and MISO and TRUFFLE love you",
+      "hit the milly rock or smth",
+      "uhhhhhhhhhhhhhhhhhh sooooooooo....",
+      "dikadikadikadodododood",
+      "my name is sam i play with dolls",
+      "NUTTTTTTT",
+      "you still haven't beat me in tetris yet",
+      "YOUR FITS ARE FIREEEEE",
+      "lebron james",
+      "claim 1 free pistachio matcha",
+      "what the freak you widally are twenty",
+      "bring 20 in the big two O two five :(",
+      "OK D1 VOLLEYBALLER",
+      "free hug!",
+      "TAKE ME TO CHOLITA PLEASEEEEEEE BEGGINGGGG",
+      "tu es tellement mignonne",
+      "tu es tellement belle",
+      "bing chilling",
+      "uhm... hi.... my name is.... uhm.. deku... what yours...",
+      "did you know that a group of flamingos is called a flamboyance",
+      "UC davider",
+      "you have really pretty eyes....",
+      "i love it when you tell me stories :)",
+      "i thinks you are really funny :)",
+      "shibal sekkeeyaisaaa",
+      "fjdksalhfjkdashfskldajflasdjf;asfjasd;as",
+      "MOOOOON BEAMMMM ICEEEE CREAMMM",
+      "The world is lucky to have you",
+      "You work so hard and have accomplished so much!",
+      "You always find a way to cheer me up!"
+
+    ];
+
+    let clicks = 0;
+    const secretClicks = 100;
+    const complimentEl = document.getElementById("compliment");
+    const secretEl = document.getElementById("secret");
+
+    function newCompliment() {
+      const random = Math.floor(Math.random() * compliments.length);
+      complimentEl.textContent = compliments[random];
+      clicks++;
+
+      if (clicks >= secretClicks) {
+        secretEl.style.display = "block";
+      }
+
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+        for (let i = 0; i < 50; i++) {
+            let confetti = document.createElement("div");
+            confetti.className = "confetti";
+            confetti.style.left = Math.random() * 100 + "vw";
+            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
+    }
+  </script>
+</body>
+</html>
