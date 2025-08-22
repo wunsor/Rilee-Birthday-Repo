@@ -158,15 +158,36 @@
     }
 
     function launchConfetti() {
-        for (let i = 0; i < 50; i++) {
-            let confetti = document.createElement("div");
-            confetti.className = "confetti";
-            confetti.style.left = Math.random() * 100 + "vw";
-            confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
-            document.body.appendChild(confetti);
-            setTimeout(() => confetti.remove(), 3000);
-        }
-    }
+  const waves = 3;              // number of waves per click
+  const delayBetweenWaves = 300; // milliseconds between waves
+
+  for (let w = 0; w < waves; w++) {
+    setTimeout(() => {
+      for (let i = 0; i < 25; i++) { // confetti pieces per wave
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+
+        // Random position, size, and color
+        confetti.style.left = Math.random() * 100 + "vw";
+        const size = Math.random() * 12 + 8; // 8px to 20px
+        confetti.style.width = size + "px";
+        confetti.style.height = size + "px";
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+
+        // Random rotation and animation speed
+        const rotate = Math.random() * 360;
+        const duration = Math.random() * 2 + 2; // 2 to 4 seconds
+        confetti.style.transform = `rotate(${rotate}deg)`;
+        confetti.style.animation = `fall ${duration}s linear forwards`;
+
+        document.body.appendChild(confetti);
+
+        // Remove confetti after it falls
+        setTimeout(() => confetti.remove(), duration * 1000);
+      }
+    }, w * delayBetweenWaves);
+  }
+}
   </script>
 </body>
 </html>
